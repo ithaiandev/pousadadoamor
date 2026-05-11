@@ -1,0 +1,685 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pousada do Amor — Paulino Neves, Maranhão</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --amarelo:#F5C800;
+  --amarelo-dark:#C9A200;
+  --amarelo-light:#FFF8C0;
+  --vermelho:#C0392B;
+  --vermelho-dark:#922B21;
+  --creme:#FFFDF0;
+  --escuro:#1A0800;
+  --texto:#4A2800;
+  --branco:#FFFFFF;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--creme);color:var(--escuro);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:1rem 3rem;transition:all .4s;}
+nav.scrolled{background:rgba(26,8,0,.96);backdrop-filter:blur(10px);padding:.7rem 3rem;box-shadow:0 2px 24px rgba(0,0,0,.35);}
+.nav-logo{font-family:'Playfair Display',serif;font-size:1.35rem;color:var(--amarelo);text-decoration:none;font-weight:700;display:flex;align-items:center;gap:.35rem;}
+.nav-logo span{color:var(--branco);font-style:italic;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;align-items:center;}
+.nav-links a{color:rgba(255,255,255,.88);text-decoration:none;font-size:.83rem;letter-spacing:.07em;font-weight:700;text-transform:uppercase;transition:color .3s;}
+.nav-links a:hover{color:var(--amarelo);}
+.nav-cta{background:var(--vermelho)!important;color:#fff!important;padding:.45rem 1.2rem;border-radius:3px;transition:background .3s!important;}
+.nav-cta:hover{background:var(--vermelho-dark)!important;}
+/* hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;background:none;border:none;padding:4px;cursor:pointer;}
+.hamburger span{display:block;width:25px;height:2.5px;background:var(--amarelo);border-radius:2px;transition:all .3s;}
+/* mobile menu */
+.mob-menu{display:none;position:fixed;inset:0;background:rgba(26,8,0,.97);z-index:9999;flex-direction:column;align-items:center;justify-content:center;gap:2rem;}
+.mob-menu.open{display:flex;}
+.mob-menu a{font-family:'Playfair Display',serif;font-size:1.9rem;color:#fff;text-decoration:none;transition:color .3s;}
+.mob-menu a:hover{color:var(--amarelo);}
+.mob-close{position:absolute;top:1.5rem;right:1.8rem;background:none;border:none;color:#fff;font-size:2.2rem;cursor:pointer;}
+
+/* HERO */
+#hero{height:100vh;min-height:580px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;}
+.hero-ov{position:absolute;inset:0;background:linear-gradient(160deg,rgba(26,8,0,.78) 0%,rgba(192,57,43,.42) 55%,rgba(245,200,0,.28) 100%);}
+.hero-wave{position:absolute;bottom:0;left:0;right:0;line-height:0;}
+.hero-wave svg{display:block;width:100%;}
+.hero-content{position:relative;z-index:2;text-align:center;padding:1.5rem;max-width:820px;animation:fadeUp .9s ease-out both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(36px);}to{opacity:1;transform:translateY(0);}}
+.hero-eyebrow{display:inline-block;background:var(--amarelo);color:var(--escuro);font-size:.72rem;font-weight:800;letter-spacing:.25em;text-transform:uppercase;padding:.4rem 1.2rem;border-radius:2px;margin-bottom:1.1rem;animation:fadeUp .9s .1s ease-out both;}
+.hero-title{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,6rem);color:#fff;line-height:1.05;text-shadow:0 2px 30px rgba(0,0,0,.4);animation:fadeUp .9s .2s ease-out both;}
+.hero-title em{color:var(--amarelo);font-style:italic;display:block;}
+.hero-sub{font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(1.1rem,2.2vw,1.4rem);color:rgba(255,255,255,.92);margin-top:.8rem;line-height:1.75;letter-spacing:.02em;animation:fadeUp .9s .35s ease-out both;}
+.hero-btns{margin-top:2rem;display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;animation:fadeUp .9s .5s ease-out both;}
+.scroll-hint{position:absolute;bottom:5.5rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(255,255,255,.55);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;animation:bounce 2s ease-in-out infinite;}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+.scroll-hint div{width:1px;height:34px;background:linear-gradient(to bottom,rgba(255,255,255,.55),transparent);}
+
+/* BUTTONS */
+.btn-red{display:inline-flex;align-items:center;gap:.55rem;background:var(--vermelho);color:#fff;padding:.85rem 2rem;text-decoration:none;font-size:.87rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;border-radius:3px;box-shadow:0 4px 18px rgba(192,57,43,.5);transition:all .3s;}
+.btn-red:hover{background:var(--vermelho-dark);transform:translateY(-2px);box-shadow:0 8px 26px rgba(192,57,43,.55);}
+.btn-yellow{display:inline-flex;align-items:center;gap:.55rem;background:var(--amarelo);color:var(--escuro);padding:.85rem 2rem;text-decoration:none;font-size:.87rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;border-radius:3px;box-shadow:0 4px 18px rgba(245,200,0,.45);transition:all .3s;}
+.btn-yellow:hover{background:var(--amarelo-dark);transform:translateY(-2px);}
+.btn-ghost{display:inline-flex;align-items:center;gap:.55rem;border:2px solid rgba(255,255,255,.7);color:#fff;padding:.85rem 2rem;text-decoration:none;font-size:.87rem;font-weight:700;text-transform:uppercase;border-radius:3px;transition:all .3s;}
+.btn-ghost:hover{background:rgba(255,255,255,.15);transform:translateY(-2px);}
+
+/* SECTIONS */
+.sec{padding:5rem 1.5rem;}
+.inner{max-width:1100px;margin:0 auto;}
+.sec-label{font-size:.72rem;font-weight:800;letter-spacing:.3em;text-transform:uppercase;color:var(--vermelho);margin-bottom:.8rem;}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4.5vw,3.1rem);color:var(--escuro);line-height:1.2;}
+.sec-title em{color:var(--vermelho);font-style:italic;}
+
+/* SOBRE */
+#sobre{background:var(--branco);}
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;}
+.sobre-fotos{display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:230px 175px;gap:.7rem;position:relative;}
+.sobre-fotos img{width:100%;height:100%;object-fit:cover;border-radius:7px;display:block;cursor:pointer;}
+.sobre-fotos img:first-child{grid-column:1/4;grid-row:1/2;border-radius:9px;}
+.badge{position:absolute;bottom:-1rem;right:-1rem;width:108px;height:108px;border-radius:50%;background:var(--amarelo);display:flex;flex-direction:column;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(245,200,0,.55);animation:gira 18s linear infinite;z-index:5;}
+.badge-in{text-align:center;animation:giraR 18s linear infinite;}
+@keyframes gira{to{transform:rotate(360deg);}}
+@keyframes giraR{to{transform:rotate(-360deg);}}
+.badge-ico{font-size:1.6rem;line-height:1;}
+.badge-txt{font-size:.58rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--vermelho-dark);}
+.sobre-texto{display:flex;flex-direction:column;gap:1.2rem;}
+.sobre-texto p{font-size:1.04rem;line-height:1.82;color:var(--texto);}
+.feats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-top:.4rem;}
+.feat{display:flex;align-items:center;gap:.6rem;font-size:.88rem;font-weight:700;color:var(--escuro);}
+.feat-dot{width:10px;height:10px;border-radius:50%;background:var(--amarelo);flex-shrink:0;border:2.5px solid var(--vermelho);}
+.btn-booking{display:inline-flex;align-items:center;gap:.55rem;background:#003580;color:#fff;padding:.85rem 2rem;text-decoration:none;font-size:.87rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;border-radius:3px;box-shadow:0 4px 18px rgba(0,53,128,.4);transition:all .3s;}
+.btn-booking:hover{background:#002a6e;transform:translateY(-2px);box-shadow:0 8px 26px rgba(0,53,128,.5);}
+
+/* COMODIDADES */
+#comodidades{background:var(--creme);}
+.comod-header{text-align:center;margin-bottom:2.5rem;}
+.comod-destaques{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;margin-bottom:2.8rem;}
+.comod-dest{background:var(--branco);border-radius:8px;padding:1rem 1.1rem;display:flex;align-items:center;gap:.8rem;font-weight:700;font-size:.92rem;color:var(--escuro);border-left:4px solid var(--amarelo);box-shadow:0 2px 10px rgba(0,0,0,.06);}
+.comod-dest-ico{font-size:1.35rem;flex-shrink:0;}
+.comod-cats{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;}
+.comod-cat{background:var(--branco);border-radius:9px;padding:1.4rem 1.3rem;box-shadow:0 2px 12px rgba(0,0,0,.06);}
+.comod-cat-title{font-size:.82rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--vermelho);margin-bottom:.9rem;display:flex;align-items:center;gap:.45rem;}
+.comod-cat ul{list-style:none;display:flex;flex-direction:column;gap:.45rem;}
+.comod-cat li{font-size:.86rem;color:var(--texto);display:flex;align-items:center;gap:.55rem;}
+.comod-cat li::before{content:'✓';color:var(--amarelo-dark);font-weight:900;font-size:.9rem;}
+@media(max-width:960px){.comod-destaques{grid-template-columns:repeat(2,1fr);}.comod-cats{grid-template-columns:repeat(2,1fr);}}
+@media(max-width:600px){.comod-destaques{grid-template-columns:1fr 1fr;}.comod-cats{grid-template-columns:1fr;}}
+
+/* QUARTOS */
+#quartos{background:var(--branco);}
+.quartos-header{text-align:center;margin-bottom:3rem;}
+.quartos-header p{max-width:520px;margin:.8rem auto 0;color:var(--texto);line-height:1.7;}
+.quartos-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
+.qcard{background:var(--branco);border-radius:9px;overflow:hidden;box-shadow:0 2px 18px rgba(0,0,0,.08);transition:transform .35s,box-shadow .35s;border-top:4px solid var(--amarelo);}
+.qcard:hover{transform:translateY(-6px);box-shadow:0 14px 38px rgba(0,0,0,.14);}
+.qimg{height:205px;overflow:hidden;position:relative;}
+.qimg img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+.qcard:hover .qimg img{transform:scale(1.06);}
+.qtag{position:absolute;top:.8rem;left:.8rem;background:var(--vermelho);color:#fff;font-size:.63rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;padding:.28rem .7rem;border-radius:2px;}
+.qbody{padding:1.4rem;}
+.qname{font-family:'Playfair Display',serif;font-size:1.22rem;color:var(--escuro);margin-bottom:.45rem;}
+.qdesc{font-size:.87rem;color:#666;line-height:1.7;margin-bottom:1rem;}
+.qam{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.1rem;}
+.am{background:var(--amarelo-light);color:var(--vermelho-dark);font-size:.71rem;font-weight:800;padding:.24rem .64rem;border-radius:3px;}
+.qfoot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid #f0e8be;padding-top:1rem;}
+.qprice{font-size:.8rem;color:#888;}
+.qprice strong{display:block;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--vermelho);line-height:1.1;}
+.btn-res{background:var(--vermelho);color:#fff;padding:.52rem 1.1rem;text-decoration:none;font-size:.74rem;font-weight:800;letter-spacing:.07em;text-transform:uppercase;border-radius:3px;transition:background .3s;}
+.btn-res:hover{background:var(--vermelho-dark);}
+
+/* GALERIA */
+#galeria{background:var(--escuro);}
+.gal-header{text-align:center;margin-bottom:2.5rem;}
+.gal-header .sec-label{color:var(--amarelo);}
+.gal-header .sec-title{color:var(--branco);}
+.gal-header .sec-title em{color:var(--amarelo);}
+.gal-grid{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:300px;gap:.6rem;}
+.gal-item{position:relative;overflow:hidden;border-radius:5px;}
+.gal-item img{width:100%;height:100%;object-fit:cover;transition:transform .55s;display:block;}
+.gal-item:hover img{transform:scale(1.08);}
+.gal-ov{position:absolute;inset:0;background:linear-gradient(to top,rgba(26,8,0,.55) 0%,transparent 55%);opacity:0;transition:opacity .3s;}
+.gal-item:hover .gal-ov{opacity:1;}
+
+/* LOCALIZACAO */
+#localizacao{background:var(--amarelo);}
+.loc-inner{display:grid;grid-template-columns:1.1fr 1fr;gap:4rem;align-items:center;}
+#localizacao .sec-label{color:var(--vermelho);}
+#localizacao .sec-title{color:var(--escuro);}
+#localizacao .sec-title em{color:var(--vermelho);}
+.loc-desc{font-size:1.04rem;line-height:1.82;color:var(--texto);margin:1.2rem 0;}
+.loc-items{display:flex;flex-direction:column;gap:.8rem;margin-top:1rem;}
+.loc-item{display:flex;align-items:flex-start;gap:.9rem;background:rgba(255,255,255,.55);padding:.9rem 1.1rem;border-radius:7px;border-left:4px solid var(--vermelho);}
+.loc-ico{font-size:1.4rem;flex-shrink:0;margin-top:.1rem;}
+.loc-item strong{display:block;font-weight:800;color:var(--escuro);margin-bottom:.1rem;}
+.loc-item span{font-size:.87rem;color:var(--texto);}
+.loc-mapa{background:rgba(255,255,255,.45);border-radius:12px;overflow:hidden;border:3px solid rgba(192,57,43,.25);box-shadow:0 8px 28px rgba(0,0,0,.12);}
+.mapa-ph{height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:rgba(255,255,255,.5);}
+.mapa-ph .pin{font-size:3rem;}
+.mapa-ph p{font-weight:700;color:var(--escuro);text-align:center;font-size:.95rem;line-height:1.6;}
+.mapa-ph a{background:var(--vermelho);color:#fff;padding:.6rem 1.5rem;border-radius:3px;text-decoration:none;font-weight:800;font-size:.84rem;transition:background .3s;}
+.mapa-ph a:hover{background:var(--vermelho-dark);}
+
+/* DEPOIMENTOS */
+#depoimentos{background:var(--branco);}
+.dep-header{text-align:center;margin-bottom:3rem;}
+.dep-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;max-width:900px;margin:0 auto;}
+.dep-card{background:var(--creme);border-radius:9px;padding:2rem;border-top:4px solid var(--amarelo);box-shadow:0 2px 16px rgba(0,0,0,.07);}
+.dep-stars{color:var(--amarelo-dark);font-size:1.1rem;margin-bottom:1rem;letter-spacing:.12em;}
+.dep-txt{font-family:'Playfair Display',serif;font-style:italic;font-size:1.04rem;line-height:1.82;color:var(--texto);margin-bottom:1.2rem;}
+.dep-author{font-weight:800;color:var(--vermelho);font-size:.88rem;}
+.dep-origin{font-size:.76rem;color:#999;letter-spacing:.04em;}
+
+/* CONTATO */
+#contato{background:var(--vermelho);position:relative;overflow:hidden;}
+#contato::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 50%,rgba(245,200,0,.22),transparent 60%);}
+.cont-inner{max-width:740px;margin:0 auto;text-align:center;position:relative;}
+#contato .sec-label{color:var(--amarelo);}
+#contato .sec-title{color:var(--branco);}
+#contato .sec-title em{color:var(--amarelo);}
+.cont-desc{font-size:1.08rem;color:rgba(255,255,255,.88);line-height:1.8;margin:1.2rem 0 2.5rem;}
+.cont-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem;margin-bottom:2.5rem;}
+.cont-card{background:rgba(255,255,255,.12);border-radius:9px;border:1.5px solid rgba(255,255,255,.25);padding:1.8rem 1.2rem;text-decoration:none;color:#fff;display:flex;flex-direction:column;align-items:center;gap:.7rem;transition:all .3s;}
+.cont-card:hover{background:rgba(255,255,255,.22);transform:translateY(-4px);}
+.cont-ico{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.7rem;background:rgba(255,255,255,.15);}
+.cont-title{font-weight:800;font-size:1rem;}
+.cont-sub{font-size:.82rem;color:rgba(255,255,255,.7);}
+.btn-wa{display:inline-flex;align-items:center;gap:.7rem;background:#25D366;color:#fff;padding:1rem 2.5rem;text-decoration:none;font-size:.98rem;font-weight:800;border-radius:4px;box-shadow:0 4px 20px rgba(37,211,102,.45);transition:all .3s;}
+.btn-wa:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(37,211,102,.6);}
+.cont-addr{margin-top:1.8rem;font-size:.84rem;color:rgba(255,255,255,.5);line-height:1.9;}
+
+/* FOOTER */
+footer{background:var(--escuro);color:rgba(255,255,255,.5);padding:2.5rem 1.5rem;text-align:center;}
+.ft-logo{font-family:'Playfair Display',serif;font-size:1.55rem;color:var(--amarelo);margin-bottom:.3rem;}
+.ft-logo span{color:var(--branco);font-style:italic;}
+.ft-tag{font-size:.87rem;font-style:italic;color:rgba(255,255,255,.38);margin-bottom:1.2rem;}
+.ft-links{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.5rem;}
+.ft-links a{color:rgba(255,255,255,.48);text-decoration:none;font-size:.79rem;letter-spacing:.1em;text-transform:uppercase;transition:color .3s;}
+.ft-links a:hover{color:var(--amarelo);}
+.ft-copy{font-size:.72rem;color:rgba(255,255,255,.22);}
+
+/* FLOAT WA */
+.float-wa{position:fixed;bottom:1.5rem;right:1.5rem;z-index:500;background:#25D366;color:#fff;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.5);animation:wap 2.5s ease-in-out infinite;transition:transform .3s;}
+.float-wa:hover{transform:scale(1.12);}
+@keyframes wap{0%,100%{box-shadow:0 4px 18px rgba(37,211,102,.5);}50%{box-shadow:0 4px 24px rgba(37,211,102,.8),0 0 0 12px rgba(37,211,102,.08);}}
+
+/* LIGHTBOX */
+.lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.93);z-index:9000;align-items:center;justify-content:center;}
+.lb-overlay.active{display:flex;}
+.lb-img{max-width:92vw;max-height:88vh;border-radius:7px;object-fit:contain;box-shadow:0 8px 48px rgba(0,0,0,.6);}
+.lb-close{position:absolute;top:1.2rem;right:1.5rem;background:none;border:none;color:#fff;font-size:2.5rem;cursor:pointer;line-height:1;opacity:.75;transition:opacity .2s;}
+.lb-close:hover{opacity:1;}
+
+/* REVEAL */
+.rev{opacity:0;transform:translateY(28px);transition:opacity .75s ease,transform .75s ease;}
+.rev.vis{opacity:1;transform:none;}
+.rev-l{opacity:0;transform:translateX(-35px);transition:opacity .75s ease,transform .75s ease;}
+.rev-l.vis{opacity:1;transform:none;}
+.rev-r{opacity:0;transform:translateX(35px);transition:opacity .75s ease,transform .75s ease;}
+.rev-r.vis{opacity:1;transform:none;}
+.stag>*{opacity:0;transform:translateY(16px);transition:opacity .55s ease,transform .55s ease;}
+.stag.vis>*:nth-child(1){opacity:1;transform:none;transition-delay:.0s;}
+.stag.vis>*:nth-child(2){opacity:1;transform:none;transition-delay:.1s;}
+.stag.vis>*:nth-child(3){opacity:1;transform:none;transition-delay:.2s;}
+.stag.vis>*:nth-child(4){opacity:1;transform:none;transition-delay:.3s;}
+.stag.vis>*:nth-child(5){opacity:1;transform:none;transition-delay:.4s;}
+.stag.vis>*:nth-child(6){opacity:1;transform:none;transition-delay:.5s;}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  .quartos-grid{grid-template-columns:repeat(3,1fr);}
+}
+@media(max-width:960px){
+  nav{padding:.9rem 1.5rem;}
+  nav.scrolled{padding:.65rem 1.5rem;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .sobre-grid{grid-template-columns:1fr;gap:2.5rem;}
+  .sobre-fotos{grid-template-rows:185px 145px;}
+  .quartos-grid{grid-template-columns:1fr 1fr;}
+  .loc-inner{grid-template-columns:1fr;gap:2.5rem;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:none;}
+  .gal-grid{grid-template-columns:1fr 1fr;grid-template-rows:240px 240px;}
+  .gal-item{height:auto;}
+  .dep-grid{grid-template-columns:repeat(2,1fr);}
+  .cont-cards{grid-template-columns:repeat(3,1fr);}
+  .cont-inner{padding:0 1rem;}
+  .quartos-grid .qcard:last-child:nth-child(odd){grid-column:1/-1;max-width:460px;margin:0 auto;}
+}
+@media(max-width:600px){
+  .sec{padding:3.5rem 1rem;}
+  .hero-btns{flex-direction:column;align-items:center;}
+  .btn-red,.btn-yellow,.btn-ghost{width:100%;max-width:320px;justify-content:center;}
+  .quartos-grid{grid-template-columns:1fr;}
+  .qcard{max-width:460px;margin:0 auto;}
+  .qimg{height:230px;}
+  .gal-grid{grid-template-columns:1fr;}
+  .gal-item{height:220px;}
+  .sobre-fotos{grid-template-columns:repeat(3,1fr);grid-template-rows:145px 110px;max-width:480px;margin:0 auto;}
+  .sobre-fotos img:first-child{grid-column:1/4;grid-row:1/2;}
+  .btn-booking{padding:.7rem 1.4rem;font-size:.8rem;}
+  .badge{right:.4rem;bottom:-.4rem;width:90px;height:90px;}
+  .feats{grid-template-columns:1fr;}
+  .dep-grid{grid-template-columns:1fr;}
+  .loc-item{gap:.6rem;}
+  .float-wa{width:50px;height:50px;bottom:1rem;right:1rem;}
+  .float-wa svg{width:24px;height:24px;}
+}
+@media(max-width:400px){
+  .hero-title{font-size:2.3rem;}
+  .nav-logo{font-size:1.1rem;}
+  .sec{padding:3rem .8rem;}
+  .sobre-fotos{grid-template-rows:115px 90px;max-width:360px;}
+  .badge{width:80px;height:80px;}
+  .badge-ico{font-size:1.3rem;}
+  .badge-txt{font-size:.5rem;}
+}
+</style>
+</head>
+<body>
+
+<!-- LIGHTBOX -->
+<div class="lb-overlay" id="lbOverlay">
+  <button class="lb-close" id="lbClose">✕</button>
+  <img class="lb-img" id="lbImg" src="" alt="">
+</div>
+
+<!-- FLOAT WHATSAPP -->
+<a href="https://wa.me/5598984311909" target="_blank" class="float-wa" title="Fale conosco">
+  <svg viewBox="0 0 24 24" fill="white" width="28" height="28"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mobMenu">
+  <button class="mob-close" id="mobClose">✕</button>
+  <a href="#sobre" onclick="closeMob()">Sobre</a>
+  <a href="#comodidades" onclick="closeMob()">Comodidades</a>
+  <a href="#quartos" onclick="closeMob()">Quartos</a>
+  <a href="#galeria" onclick="closeMob()">Galeria</a>
+  <a href="#localizacao" onclick="closeMob()">Localização</a>
+  <a href="#depoimentos" onclick="closeMob()">Avaliações</a>
+  <a href="https://wa.me/5598984311909" target="_blank" style="color:var(--amarelo);">📲 Reservar Agora</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">♥ Pousada <span>do Amor</span></a>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#comodidades">Comodidades</a></li>
+    <li><a href="#quartos">Quartos</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#localizacao">Localização</a></li>
+    <li><a href="#depoimentos">Avaliações</a></li>
+    <li><a href="https://wa.me/5598984311909" target="_blank" class="nav-cta">Reservar</a></li>
+  </ul>
+  <button class="hamburger" id="hambtn" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg" style="background-image:url('imagens/faixadapousada.jpeg');"></div>
+  <div class="hero-ov"></div>
+  <div class="hero-content">
+    <span class="hero-eyebrow">♥ Paulino Neves · Maranhão ♥</span>
+    <h1 class="hero-title">Pousada<em>do Amor</em></h1>
+    <p class="hero-sub">Nos Pequenos Lençóis Maranhenses — onde a natureza e o aconchego se encontram</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/5598984311909?text=Olá!%20Quero%20fazer%20uma%20reserva%20na%20Pousada%20do%20Amor!" target="_blank" class="btn-red">
+        <svg viewBox="0 0 24 24" fill="white" width="18" height="18"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        Reservar pelo WhatsApp
+      </a>
+      <a href="#sobre" class="btn-ghost">Conhecer a Pousada</a>
+    </div>
+  </div>
+  <div class="hero-wave">
+    <svg viewBox="0 0 1440 75" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <path fill="#FFFFFF" d="M0,35 C360,75 1080,0 1440,40 L1440,75 L0,75 Z"/>
+    </svg>
+  </div>
+</section>
+
+<!-- SOBRE -->
+<section id="sobre" class="sec">
+  <div class="inner sobre-grid">
+    <div class="sobre-fotos rev-l">
+      <img src='imagens/faixadapousada.jpeg' alt="Fachada da Pousada do Amor">
+      <img src='imagens/fotovarandapousada.webp' alt="Varanda da Pousada do Amor">
+      <img src='imagens/quartopousada.webp' alt="Quarto da Pousada do Amor">
+      <img src='imagens/pousada.jpeg' alt="Pousada do Amor">
+      <div class="badge"><div class="badge-in"><div class="badge-ico">♥</div><div class="badge-txt">Com Amor</div></div></div>
+    </div>
+    <div class="sobre-texto rev-r">
+      <p class="sec-label">Sobre a Pousada</p>
+      <h2 class="sec-title">Um lar <em>cheio de amor</em><br>no Maranhão</h2>
+      <p>A Pousada do Amor é um espaço acolhedor e familiar em Paulino Neves — porta de entrada para os Pequenos Lençóis Maranhenses. Nossa pousada é o ponto de partida perfeito para explorar as maravilhas naturais da região.</p>
+      <p>Aqui você encontra praias lindas, lagoas de águas cristalinas, dunas douradas e muito mais — tudo com o conforto e o carinho que só a Pousada do Amor oferece.</p>
+      <div class="feats stag">
+        <div class="feat"><span class="feat-dot"></span>Próxima às lagoas</div>
+        <div class="feat"><span class="feat-dot"></span>Acesso à praia</div>
+        <div class="feat"><span class="feat-dot"></span>Quartos com A/C</div>
+        <div class="feat"><span class="feat-dot"></span>Frigobar incluso</div>
+        <div class="feat"><span class="feat-dot"></span>Ambiente familiar</div>
+        <div class="feat"><span class="feat-dot"></span>Passeios organizados</div>
+      </div>
+      <div style="margin-top:1.6rem;display:flex;flex-wrap:wrap;gap:.8rem;">
+        <a href="https://wa.me/5598984311909" target="_blank" class="btn-red">Falar Conosco</a>
+        <a href="https://www.booking.com/hotel/br/pousada-do-amor-paulino-neves.pt-pt.html" target="_blank" class="btn-booking">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="18" height="18"><path d="M17.4 2H6.6C4.1 2 2 4.1 2 6.6v10.8C2 19.9 4.1 22 6.6 22h10.8c2.5 0 4.6-2.1 4.6-4.6V6.6C22 4.1 19.9 2 17.4 2zm-5 14.5c-2.5 0-4.5-2-4.5-4.5s2-4.5 4.5-4.5 4.5 2 4.5 4.5-2 4.5-4.5 4.5z"/></svg>
+          Reservar no Booking
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMODIDADES -->
+<section id="comodidades" class="sec">
+  <div class="inner">
+    <div class="comod-header rev">
+      <p class="sec-label">O que oferecemos</p>
+      <h2 class="sec-title">Nossas <em>Comodidades</em></h2>
+    </div>
+
+    <!-- Destaques principais -->
+    <div class="comod-destaques stag">
+      <div class="comod-dest"><span class="comod-dest-ico">📶</span>Wi-Fi gratuito em todo o hotel</div>
+      <div class="comod-dest"><span class="comod-dest-ico">🅿️</span>Estacionamento grátis no local</div>
+      <div class="comod-dest"><span class="comod-dest-ico">❄️</span>Ar condicionado nos quartos</div>
+      <div class="comod-dest"><span class="comod-dest-ico">☕</span>Café da manhã disponível</div>
+      <div class="comod-dest"><span class="comod-dest-ico">🐾</span>Aceita animais de estimação</div>
+      <div class="comod-dest"><span class="comod-dest-ico">🏠</span>Toda a unidade no térreo</div>
+    </div>
+
+    <!-- Categorias -->
+    <div class="comod-cats stag">
+      <div class="comod-cat">
+        <div class="comod-cat-title">🛏️ Quarto</div>
+        <ul>
+          <li>Ar condicionado</li>
+          <li>Roupa de cama inclusa</li>
+          <li>TV de tela plana</li>
+          <li>Canais a cabo</li>
+          <li>Minibar</li>
+          <li>Vista jardim</li>
+          <li>Quartos para não fumantes</li>
+          <li>Quartos familiares</li>
+        </ul>
+      </div>
+      <div class="comod-cat">
+        <div class="comod-cat-title">🚿 Banheiro</div>
+        <ul>
+          <li>Banheiro privativo</li>
+          <li>Toalhas inclusas</li>
+          <li>Papel higiênico</li>
+          <li>Chuveiro</li>
+          <li>WC</li>
+        </ul>
+      </div>
+      <div class="comod-cat">
+        <div class="comod-cat-title">🌿 Áreas Externas</div>
+        <ul>
+          <li>Varanda</li>
+          <li>Terraço</li>
+          <li>Jardim</li>
+          <li>Área para piquenique</li>
+          <li>Mobiliário de exterior</li>
+        </ul>
+      </div>
+      <div class="comod-cat">
+        <div class="comod-cat-title">🍳 Cozinha & Alimentação</div>
+        <ul>
+          <li>Café da manhã</li>
+          <li>Cozinha compartilhada</li>
+          <li>Frigobar</li>
+          <li>Kitchenette</li>
+        </ul>
+      </div>
+      <div class="comod-cat">
+        <div class="comod-cat-title">🌐 Internet & Estacionamento</div>
+        <ul>
+          <li>Wi-Fi gratuito em todo o hotel</li>
+          <li>Estacionamento gratuito e privado</li>
+          <li>Sem necessidade de reserva</li>
+        </ul>
+      </div>
+      <div class="comod-cat">
+        <div class="comod-cat-title">✨ Serviços & Geral</div>
+        <ul>
+          <li>Balcão de turismo</li>
+          <li>Aceita animais (sem custo extra)</li>
+          <li>Área específica para fumantes</li>
+          <li>Toda a unidade no térreo</li>
+          <li>Idioma: Português</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUARTOS -->
+<section id="quartos" class="sec">
+  <div class="inner">
+    <div class="quartos-header rev">
+      <p class="sec-label">Acomodações</p>
+      <h2 class="sec-title">Nossos <em>Quartos</em></h2>
+      <p>Conforto, limpeza e muito carinho em cada detalhe para a sua estada ser inesquecível</p>
+    </div>
+    <div class="quartos-grid stag">
+      <div class="qcard">
+        <div class="qimg">
+          <img src='imagens/quartocasal.jpeg' alt="Quarto casal">
+          <span class="qtag">Destaque ♥</span>
+        </div>
+        <div class="qbody">
+          <h3 class="qname">Quarto Casal</h3>
+          <p class="qdesc">Espaçoso com cama de casal, colcha caprichada, banheiro privativo e frigobar. Conforto total para o casal!</p>
+          <div class="qam">
+            <span class="am">Ar-condicionado</span><span class="am">Frigobar</span>
+            <span class="am">Banheiro privativo</span><span class="am">Toalhas inclusas</span>
+          </div>
+          <div class="qfoot">
+            <div class="qprice">A partir de<strong>Consultar</strong></div>
+            <a href="https://wa.me/5598984311909" target="_blank" class="btn-res">Reservar</a>
+          </div>
+        </div>
+      </div>
+      <div class="qcard">
+        <div class="qimg">
+          <img src='imagens/quartofamilia.jpeg' alt="Quarto família">
+        </div>
+        <div class="qbody">
+          <h3 class="qname">Quarto Família</h3>
+          <p class="qdesc">Amplo, com 3 camas, ar-condicionado e frigobar. Ideal para famílias e grupos que querem conforto e espaço.</p>
+          <div class="qam">
+            <span class="am">Ar-condicionado</span><span class="am">3 camas</span>
+            <span class="am">Frigobar</span><span class="am">Toalhas inclusas</span>
+          </div>
+          <div class="qfoot">
+            <div class="qprice">A partir de<strong>Consultar</strong></div>
+            <a href="https://wa.me/5598984311909" target="_blank" class="btn-res">Reservar</a>
+          </div>
+        </div>
+      </div>
+      <div class="qcard">
+        <div class="qimg">
+          <img src='imagens/praiavisaoaerea.jpeg' alt="Passeio nos Lençóis">
+          <span class="qtag">Popular</span>
+        </div>
+        <div class="qbody">
+          <h3 class="qname">Hospedagem + Passeio</h3>
+          <p class="qdesc">Combine sua estada com passeios guiados pelas lagoas dos Lençóis e pela praia de Paulino Neves. Experiência completa!</p>
+          <div class="qam">
+            <span class="am">Hospedagem</span><span class="am">Passeio lagoas</span>
+            <span class="am">Guia local</span><span class="am">Praia</span>
+          </div>
+          <div class="qfoot">
+            <div class="qprice">Pacote<strong>Consultar</strong></div>
+            <a href="https://wa.me/5598984311909" target="_blank" class="btn-res">Saber Mais</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA -->
+<section id="galeria" class="sec">
+  <div class="inner">
+    <div class="gal-header rev">
+      <p class="sec-label">Galeria</p>
+      <h2 class="sec-title">A natureza que <em>espera por você</em></h2>
+    </div>
+    <div class="gal-grid stag">
+      <div class="gal-item"><img src='imagens/praiavisaoaerea.jpeg' alt="Vista aérea da costa de Paulino Neves"><div class="gal-ov"></div></div>
+      <div class="gal-item"><img src='imagens/dunas.jpeg' alt="Dunas e lagoas dos Pequenos Lençóis"><div class="gal-ov"></div></div>
+      <div class="gal-item"><img src='imagens/balançocopraia.jpeg' alt="Praia de Paulino Neves com balanços"><div class="gal-ov"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCALIZACAO -->
+<section id="localizacao" class="sec">
+  <div class="inner loc-inner">
+    <div class="rev-l">
+      <p class="sec-label">📍 Onde estamos</p>
+      <h2 class="sec-title">Paulino Neves,<br><em>Maranhão</em></h2>
+      <p class="loc-desc">Paulino Neves é abençoada pela natureza: praias extensas e preservadas, lagoas cristalinas entre as dunas dos Pequenos Lençóis e paisagens únicas no mundo.</p>
+      <div class="loc-items stag">
+        <div class="loc-item"><span class="loc-ico">🏖️</span><div><strong>Praia de Paulino Neves</strong><span>Extensa e preservada, com areias douradas e visual deslumbrante</span></div></div>
+        <div class="loc-item"><span class="loc-ico">🌊</span><div><strong>Lagoas dos Lençóis</strong><span>Lagoas de água doce cristalina entre as dunas brancas — espetáculo único</span></div></div>
+        <div class="loc-item"><span class="loc-ico">🌬️</span><div><strong>Parque Eólico</strong><span>Vista impressionante dos aerogeradores com o mar ao fundo</span></div></div>
+        <div class="loc-item"><span class="loc-ico">🚗</span><div><strong>Localização</strong><span>Paulino Neves, MA — entrada dos Pequenos Lençóis Maranhenses</span></div></div>
+      </div>
+    </div>
+    <div class="loc-mapa rev-r">
+      <div class="mapa-ph">
+        <div class="pin">📍</div>
+        <p><strong>Pousada do Amor</strong><br>Paulino Neves, Maranhão<br>Pequenos Lençóis Maranhenses</p>
+        <a href="https://www.google.com/maps/search/Pousada+do+Amor+Paulino+Neves+MA" target="_blank">Ver no Google Maps</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS -->
+<section id="depoimentos" class="sec">
+  <div class="inner">
+    <div class="dep-header rev">
+      <p class="sec-label">Avaliações</p>
+      <h2 class="sec-title">O que nossos <em>hóspedes</em> dizem</h2>
+    </div>
+    <div class="dep-grid stag">
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-txt">"Lugar incrível! A pousada é super aconchegante, os quartos limpos e o atendimento maravilhoso. As lagoas dos Lençóis são de tirar o fôlego!"</p>
+        <div class="dep-author">Ana &amp; Carlos</div><div class="dep-origin">São Luís, MA · Casal</div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-txt">"Fomos em família e adoramos! Próxima à praia e aos passeios. O atendimento foi nota 10. Voltaremos com certeza, recomendo de olhos fechados!"</p>
+        <div class="dep-author">Família Oliveira</div><div class="dep-origin">Fortaleza, CE · Família</div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-txt">"Melhor experiência no Maranhão! Os Pequenos Lençóis são um paraíso e a Pousada do Amor é o lugar certo para se hospedar. Perfeito em tudo!"</p>
+        <div class="dep-author">Mariana Costa</div><div class="dep-origin">Teresina, PI · Viagem solo</div>
+      </div>
+      <div class="dep-card">
+        <div class="dep-stars">★★★★★</div>
+        <p class="dep-txt">"A praia de Paulino Neves é linda e a pousada fica muito bem localizada. Atendimento caloroso, quarto confortável. Uma estada que guardo no coração!"</p>
+        <div class="dep-author">Rafael &amp; Juliana</div><div class="dep-origin">Brasília, DF · Lua de mel</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTATO -->
+<section id="contato" class="sec">
+  <div class="cont-inner">
+    <p class="sec-label">Reservas &amp; Contato</p>
+    <h2 class="sec-title rev">Venha viver o <em>amor</em><br>nos Lençóis!</h2>
+    <p class="cont-desc">Entre em contato, tire suas dúvidas e faça sua reserva com facilidade. Estamos sempre prontos para receber você com muito carinho!</p>
+    <div class="cont-cards stag">
+      <a href="https://wa.me/5598984311909" target="_blank" class="cont-card">
+        <div class="cont-ico"><svg viewBox="0 0 24 24" fill="#25D366" width="32" height="32"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></div>
+        <div class="cont-title">WhatsApp</div>
+        <div class="cont-sub">(98) 98431-1909</div>
+      </a>
+      <a href="https://www.instagram.com/pousada_doamor" target="_blank" class="cont-card">
+        <div class="cont-ico"><svg viewBox="0 0 24 24" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"><defs><radialGradient id="ig" cx="30%" cy="107%" r="150%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><rect x="2" y="2" width="20" height="20" rx="5.5" fill="url(#ig)"/><circle cx="12" cy="12" r="4.5" stroke="white" stroke-width="1.7" fill="none"/><circle cx="17.2" cy="6.8" r="1.1" fill="white"/></svg></div>
+        <div class="cont-title">Instagram</div>
+        <div class="cont-sub">@pousada_doamor</div>
+      </a>
+      <a href="https://www.booking.com/hotel/br/pousada-do-amor-paulino-neves.pt-pt.html" target="_blank" class="cont-card">
+        <div class="cont-ico"><svg viewBox="0 0 32 32" width="32" height="32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="32" height="32" rx="6" fill="#003580"/><text x="16" y="22" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="14" fill="#ffffff">B.</text></svg></div>
+        <div class="cont-title">Booking.com</div>
+        <div class="cont-sub">Reservar online</div>
+      </a>
+    </div>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+    <a href="https://wa.me/5598984311909?text=Olá!%20Quero%20fazer%20uma%20reserva%20na%20Pousada%20do%20Amor!%20🏠" target="_blank" class="btn-wa">
+      <svg viewBox="0 0 24 24" fill="white" width="22" height="22"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      Fazer Reserva pelo WhatsApp
+    </a>
+    <a href="https://www.booking.com/hotel/br/pousada-do-amor-paulino-neves.pt-pt.html" target="_blank" class="btn-booking" style="padding:1rem 2.5rem;font-size:.98rem;">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><rect x="2" y="2" width="20" height="20" rx="4" fill="currentColor" opacity=".15"/><text x="12" y="17" text-anchor="middle" font-family="Arial,sans-serif" font-weight="900" font-size="13" fill="white">B.</text></svg>
+      Reservar no Booking
+    </a>
+    </div>
+    <p class="cont-addr">📍 Paulino Neves, Maranhão — Pequenos Lençóis Maranhenses<br>📞 (98) 98431-1909</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="ft-logo">Pousada <span>do Amor</span></div>
+  <p class="ft-tag">Onde o coração encontra os Lençóis ♥</p>
+  <div class="ft-links">
+    <a href="#sobre">Sobre</a><a href="#quartos">Quartos</a><a href="#galeria">Galeria</a>
+    <a href="#localizacao">Localização</a><a href="#depoimentos">Avaliações</a>
+    <a href="https://wa.me/5598984311909" target="_blank">Reservar</a>
+    <a href="https://www.instagram.com/pousada_doamor" target="_blank">Instagram</a>
+  </div>
+  <p class="ft-copy">© 2026 Pousada do Amor · Paulino Neves, MA · Todos os direitos reservados</p>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+
+const hambtn = document.getElementById('hambtn');
+const mobMenu = document.getElementById('mobMenu');
+const mobClose = document.getElementById('mobClose');
+hambtn.addEventListener('click', () => mobMenu.classList.add('open'));
+mobClose.addEventListener('click', () => mobMenu.classList.remove('open'));
+function closeMob(){ mobMenu.classList.remove('open'); }
+
+// Lightbox
+const lbOverlay = document.getElementById('lbOverlay');
+const lbImg = document.getElementById('lbImg');
+const lbClose = document.getElementById('lbClose');
+document.querySelectorAll('.sobre-fotos img').forEach(img => {
+  img.addEventListener('click', () => {
+    lbImg.src = img.src; lbImg.alt = img.alt;
+    lbOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+lbClose.addEventListener('click', closeLb);
+lbOverlay.addEventListener('click', e => { if(e.target === lbOverlay) closeLb(); });
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeLb(); });
+function closeLb(){ lbOverlay.classList.remove('active'); document.body.style.overflow = ''; }
+
+const els = document.querySelectorAll('.rev,.rev-l,.rev-r,.stag');
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('vis'); obs.unobserve(e.target); }});
+}, {threshold: 0.1});
+els.forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
